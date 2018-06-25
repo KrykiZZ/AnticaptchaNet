@@ -9,6 +9,7 @@
 *.exe.config
 *.pdb
 *.ldf
+*.nuspec
 
 /.vs/
 
