@@ -1,5 +1,10 @@
 # Usage
-### As simple as:
+**Add library to your project:**
+``` powershell
+PM> Install-Package AnticaptchaNet
+```
+
+**And simply:**
 ```cs
 Anticaptcha anticaptcha = new Anticaptcha("YOUR_ANTICAPTCHA_KEY");
 

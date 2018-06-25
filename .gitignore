@@ -10,6 +10,7 @@
 *.pdb
 *.ldf
 *.nuspec
+*.nupkg
 
 /.vs/
 
