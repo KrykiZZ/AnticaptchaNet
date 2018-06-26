@@ -5,6 +5,9 @@ using System.Net;
 
 namespace AnticaptchaNet.JsonCaptchaTask
 {
+    /// <summary>
+    /// Usual image to text captcha task.
+    /// </summary>
     public class ImageToTextTask : ICaptchaTask
     {
         /// <summary>
@@ -19,82 +22,91 @@ namespace AnticaptchaNet.JsonCaptchaTask
         [JsonProperty(PropertyName = "body")]
         public string ImageBase64;
 
-        public ImageToTextTask(string path)
+        /// <summary>
+        /// Create task from image file path.
+        /// </summary>
+        /// <param name="filePath">Image file path.</param>
+        public ImageToTextTask(string filePath)
         {
-            if (Uri.IsWellFormedUriString(path, UriKind.Absolute))
-                this.ImageBase64 = EncodeFromUrl(path);
-            else
-                this.ImageBase64 = EncodeFile(path);
+            ImageBase64 = Convert.ToBase64String(File.ReadAllBytes(filePath));
+        }
+
+        /// <summary>
+        /// Create task from image URI.
+        /// <para>Downloads the image (without saving) and encodes it.</para>
+        /// </summary>
+        /// <param name="imageUri">Image URI.</param>
+        public ImageToTextTask(Uri imageUri)
+        {
+            WebClient wc = new WebClient();
+            byte[] bytes;
+
+            try
+            {
+                bytes = wc.DownloadData(imageUri);
+            }
+            finally
+            {
+                if (wc != null) wc.Dispose();
+            }
+
+            ImageBase64 = Convert.ToBase64String(bytes);
         }
 
         #region Optional Fields
 
         /// <summary>
-        /// Optional.
+        /// Optional. Tells anticaptcha if current task contains spaces.
         /// </summary>
         [JsonProperty(PropertyName = "phrase")]
-        public bool WillContainSpaces; // contains spaces?
+        public bool WillContainSpaces;
 
         /// <summary>
-        /// Optional. Use <c>enum SymbolicContent</c> to set this property.
+        /// Optional. 
+        /// <para>Tells anticaptcha if current task contains math equation.</para>
+        /// </summary>
+        [JsonProperty(PropertyName = "math")]
+        public bool WillContainMath;
+
+        /// <summary>
+        /// Optional. 
+        /// <para>Use <code>enum SymbolicContent</code> to set this property.</para>
         /// </summary>
         [JsonProperty(PropertyName = "numeric")]
         public int Numeric;
 
         /// <summary>
         /// Optional.
-        /// </summary>
-        [JsonProperty(PropertyName = "math")]
-        public bool WillContainMath; // contains math equation?
-
-        /// <summary>
-        /// Optional.
+        /// <para>Tells anticaptcha if current task is case sensitive.</para>
         /// </summary>
         [JsonProperty(PropertyName = "case")]
         public bool CaseSensitive;
 
         /// <summary>
-        /// Optional. 0..20
+        /// Optional.
+        /// <para>Minimal response length.</para>
         /// </summary>
         [JsonProperty(PropertyName = "minLength")]
         public int MinResponseLength; // 0..20 min resp length
 
         /// <summary>
-        /// Optional. 0..20
+        /// Optional.
+        /// <para>Maximum response length.</para>
         /// </summary>
         [JsonProperty(PropertyName = "maxLength")]
         public int MaxResponseLength; // 0..20 max resp length
 
         #endregion
         
-        protected string EncodeFile(string filePath)
-        {
-            byte[] bytes = File.ReadAllBytes(filePath);
-            return Convert.ToBase64String(bytes);
-        }
-
-        protected string EncodeFromUrl(string url)
-        {
-            WebClient wc = new WebClient();
-            byte[] bytes;
-            
-            try
-            {
-                bytes = wc.DownloadData(url);
-            }
-            finally
-            {
-                if (wc != null) wc.Dispose();
-            }
-            
-            return Convert.ToBase64String(bytes);
-        }
     }
 
+    /// <summary>
+    /// Type of the content.
+    /// </summary>
     enum SymbolicContent
     {
-        All,
-        OnlyDigits,
-        OnlyChars
+        All = 0,
+        OnlyDigits = 1,
+        OnlyChars = 2
     }
 }

@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Anticaptcha.cs" />
+    <Compile Include="AnticaptchaError.cs" />
     <Compile Include="JsonCaptchaTask\ICaptchaTask.cs" />
     <Compile Include="JsonCaptchaTask\ImageToTextTask.cs" />
     <Compile Include="JsonCaptchaSolution\CaptchaSolution.cs" />

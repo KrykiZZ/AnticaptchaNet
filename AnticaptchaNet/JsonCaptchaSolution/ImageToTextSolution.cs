@@ -4,6 +4,9 @@ namespace AnticaptchaNet.JsonCaptchaSolution
 {
     public class ImageToTextSolution : CaptchaSolution
     {
+        /// <summary>
+        /// Image captcha solution.
+        /// </summary>
         [JsonProperty(PropertyName = "text")]
         public string Text;
 
