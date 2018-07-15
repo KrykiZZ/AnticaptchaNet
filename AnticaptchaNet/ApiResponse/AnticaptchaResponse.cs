@@ -1,26 +1,26 @@
 ﻿using Newtonsoft.Json;
 
-namespace AnticaptchaNet.JsonApiResponse
+namespace AnticaptchaNet.ApiResponse
 {
-    public abstract class AnticaptchaJsonResponse
+    public abstract class AnticaptchaResponse
     {
         /// <summary>
         /// <para>Error id.</para>
         /// <para>Error list: <see cref="https://anticaptcha.atlassian.net/wiki/spaces/API/pages/196679"/></para>
         /// </summary>
         [JsonProperty(PropertyName = "errorId")]
-        public int ErrorId;
+        public int ErrorId { get; protected set; }
 
         /// <summary>
         /// Error name.
         /// </summary>
         [JsonProperty(PropertyName = "errorCode")]
-        public string ErrorCode;
+        public string ErrorCode { get; protected set; }
 
         /// <summary>
         /// Error description.
         /// </summary>
         [JsonProperty(PropertyName = "errorDescription")]
-        public string ErrorDescription;
+        public string ErrorDescription { get; protected set; }
     }
 }

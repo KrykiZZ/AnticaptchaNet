@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace AnticaptchaNet.JsonApiResponse
+namespace AnticaptchaNet.ApiResponse
 {
-    public class BalanceResult : AnticaptchaJsonResponse
+    public class BalanceResult : AnticaptchaResponse
     {
         /// <summary>
         /// User's current balance.

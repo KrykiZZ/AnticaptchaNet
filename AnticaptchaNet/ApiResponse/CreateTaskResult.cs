@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace AnticaptchaNet.JsonApiResponse
+namespace AnticaptchaNet.ApiResponse
 {
-    public class CreateTaskResult : AnticaptchaJsonResponse
+    public class CreateTaskResult : AnticaptchaResponse
     {
         /// <summary>
         /// Id of the created task.

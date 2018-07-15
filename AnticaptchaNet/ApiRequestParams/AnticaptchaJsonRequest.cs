@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace AnticaptchaNet.JsonApiRequest
+namespace AnticaptchaNet.ApiRequestParams
 {
-    public abstract class AnticaptchaJsonRequest
+    public abstract class RequestParams
     {
         /// <summary>
         /// Your anticaptcha client key.

@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.IO;
 
 namespace AnticaptchaNet.Tests
@@ -21,11 +22,15 @@ namespace AnticaptchaNet.Tests
             string actualCaptchaSolution = "sqc48";
             int taskId = anticaptcha.CreateTask($"captcha_{actualCaptchaSolution}.jpg");
 
-            var taskResult = new JsonApiResponse.AnticaptchaTaskResult();
+            //var taskResult = new JsonApiResponse.TaskResult();
+            //throw new NotImplementedException();
+
+            var taskResult = anticaptcha.GetTaskResult(taskId);
+
             while (!taskResult.IsDone)
                 taskResult = anticaptcha.GetTaskResult(taskId);
 
-            string captchaSolution = ((JsonCaptchaSolution.ImageToTextSolution)taskResult.Solution).Text;
+            string captchaSolution = ((Captcha.ImageToTextSolution)taskResult.Solution).Text;
 
             Assert.AreEqual(captchaSolution, actualCaptchaSolution);
         }

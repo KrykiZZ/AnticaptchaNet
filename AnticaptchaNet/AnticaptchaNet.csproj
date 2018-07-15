@@ -60,20 +60,21 @@
   <ItemGroup>
     <Compile Include="Anticaptcha.cs" />
     <Compile Include="AnticaptchaError.cs" />
-    <Compile Include="JsonCaptchaTask\ICaptchaTask.cs" />
-    <Compile Include="JsonCaptchaTask\ImageToTextTask.cs" />
-    <Compile Include="JsonCaptchaSolution\CaptchaSolution.cs" />
-    <Compile Include="JsonCaptchaSolution\ImageToTextSolution.cs" />
-    <Compile Include="JsonApiResponse\AnticaptchaJsonResponse.cs" />
-    <Compile Include="JsonApiResponse\CreateTaskResult.cs" />
-    <Compile Include="JsonApiResponse\GetBalanceResult.cs" />
-    <Compile Include="JsonApiRequest\AnticaptchaJsonRequest.cs" />
+    <Compile Include="CaptchaTask\ICaptchaTask.cs" />
+    <Compile Include="CaptchaTask\ImageToTextTask.cs" />
+    <Compile Include="Captcha\CaptchaSolution.cs" />
+    <Compile Include="Captcha\ImageToTextSolution.cs" />
+    <Compile Include="ApiResponse\AnticaptchaResponse.cs" />
+    <Compile Include="ApiResponse\CreateTaskResult.cs" />
+    <Compile Include="ApiResponse\GetBalanceResult.cs" />
+    <Compile Include="ApiRequestParams\AnticaptchaJsonRequest.cs" />
     <Compile Include="ApiMethodUrl.cs" />
-    <Compile Include="JsonApiRequest\CreateTaskRequest.cs" />
-    <Compile Include="JsonApiRequest\GetBalanceRequest.cs" />
-    <Compile Include="JsonApiRequest\GetTaskResultRequest.cs" />
-    <Compile Include="JsonApiResponse\TaskResult.cs" />
+    <Compile Include="ApiRequestParams\CreateTaskParams.cs" />
+    <Compile Include="ApiRequestParams\GetBalanceParams.cs" />
+    <Compile Include="ApiRequestParams\GetTaskResultRequest.cs" />
+    <Compile Include="ApiResponse\TaskResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleRequest.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

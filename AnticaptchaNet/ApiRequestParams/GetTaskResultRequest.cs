@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace AnticaptchaNet.JsonApiRequest
+namespace AnticaptchaNet.ApiRequestParams
 {
-    public class GetTaskResultRequest : AnticaptchaJsonRequest
+    public class GetTaskResultParams : RequestParams
     {
         /// <summary>
         /// Numeric identificator for created captcha task. 

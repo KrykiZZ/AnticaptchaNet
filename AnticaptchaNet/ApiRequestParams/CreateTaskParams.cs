@@ -1,9 +1,9 @@
-﻿using AnticaptchaNet.JsonCaptchaTask;
+﻿using AnticaptchaNet.CaptchaTask;
 using Newtonsoft.Json;
 
-namespace AnticaptchaNet.JsonApiRequest
+namespace AnticaptchaNet.ApiRequestParams
 {
-    public class CreateTaskRequest : AnticaptchaJsonRequest
+    public class CreateTaskParams : RequestParams
     {
         [JsonProperty(PropertyName = "task")]
         public ICaptchaTask CaptchaTask;

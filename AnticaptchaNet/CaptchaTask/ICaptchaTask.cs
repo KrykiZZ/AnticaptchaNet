@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace AnticaptchaNet.JsonCaptchaTask
+namespace AnticaptchaNet.CaptchaTask
 {
     public interface ICaptchaTask
     {

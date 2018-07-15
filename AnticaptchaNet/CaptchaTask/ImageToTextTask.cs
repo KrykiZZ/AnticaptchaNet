@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Net;
 
-namespace AnticaptchaNet.JsonCaptchaTask
+namespace AnticaptchaNet.CaptchaTask
 {
     /// <summary>
     /// Usual image to text captcha task.
