@@ -1,6 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using AnticaptchaNet.ApiResponse;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
+using System.Threading;
 
 namespace AnticaptchaNet.Tests
 {
@@ -22,13 +24,13 @@ namespace AnticaptchaNet.Tests
             string actualCaptchaSolution = "sqc48";
             int taskId = anticaptcha.CreateTask($"captcha_{actualCaptchaSolution}.jpg");
 
-            //var taskResult = new JsonApiResponse.TaskResult();
-            //throw new NotImplementedException();
-
-            var taskResult = anticaptcha.GetTaskResult(taskId);
+            TaskResult taskResult = anticaptcha.GetTaskResult(taskId);
 
             while (!taskResult.IsDone)
+            {
                 taskResult = anticaptcha.GetTaskResult(taskId);
+                Thread.Sleep(1000); // Wait for captcha solution.
+            }
 
             string captchaSolution = ((Captcha.ImageToTextSolution)taskResult.Solution).Text;
 

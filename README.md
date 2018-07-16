@@ -8,16 +8,20 @@ PM> Install-Package AnticaptchaNet
 ```cs
 Anticaptcha anticaptcha = new Anticaptcha("YOUR_ANTICAPTCHA_KEY");
 
+if (anticaptcha.Balance < 0.1) return;
+
 int taskId = anticaptcha.CreateTask("captcha_filepath.jpg");
 
-var taskResult = new JsonApiResponse.AnticaptchaTaskResult();
+TaskResult taskResult = anticaptcha.GetTaskResult(taskId);
 
 while (!taskResult.IsDone)
-	taskResult = anticaptcha.GetTaskResult(taskId);
+{
+    taskResult = anticaptcha.GetTaskResult(taskId);
+    Thread.Sleep(1000); // Wait for captcha solution.
+}
 
-string captchaSolution = taskResult.Solution.Text;
+string captchaSolution = ((Captcha.ImageToTextSolution)taskResult.Solution).Text;
 ```
 
-# Dependencies
+## Dependencies
 - [Newtonsoft.Json](https://www.newtonsoft.com/)
-- [JsonRequest](https://github.com/ademargomes/JsonRequest)

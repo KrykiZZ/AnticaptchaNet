@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnticaptchaNet", "AnticaptchaNet\AnticaptchaNet.csproj", "{C078E18C-07C8-41CE-9F5B-E9E7335FD27D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnticaptchaNet.Core", "AnticaptchaNet.Core\AnticaptchaNet.Core.csproj", "{C078E18C-07C8-41CE-9F5B-E9E7335FD27D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnticaptchaNet.Tests", "AnticaptchaNet.Tests\AnticaptchaNet.Tests.csproj", "{F01A3B97-ABC5-452A-9925-3892B39BC917}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FFFBAD27-D957-48B2-8E98-65A1B8CC07E6}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

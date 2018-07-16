@@ -1,5 +1,4 @@
 ﻿using System;
-using JsonRequest;
 using Newtonsoft.Json;
 using AnticaptchaNet.ApiRequestParams;
 using AnticaptchaNet.ApiResponse;
