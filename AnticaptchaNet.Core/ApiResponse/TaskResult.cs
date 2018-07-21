@@ -1,6 +1,6 @@
-﻿using System;
-using AnticaptchaNet.Captcha;
+﻿using AnticaptchaNet.Captcha;
 using Newtonsoft.Json.Linq;
+using System;
 
 
 namespace AnticaptchaNet.ApiResponse

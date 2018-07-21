@@ -28,8 +28,8 @@ namespace AnticaptchaNet.Tests
 
             while (!taskResult.IsDone)
             {
-                taskResult = anticaptcha.GetTaskResult(taskId);
                 Thread.Sleep(1000); // Wait for captcha solution.
+                taskResult = anticaptcha.GetTaskResult(taskId);
             }
 
             string captchaSolution = ((Captcha.ImageToTextSolution)taskResult.Solution).Text;
