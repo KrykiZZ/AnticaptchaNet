@@ -28,7 +28,7 @@ namespace AnticaptchaNet
         /// Get anticaptcha account balance.
         /// </summary>
         /// <returns>Returns anticaptcha balance.</returns>
-        protected float GetBalance()
+        public float GetBalance()
         {
             var req = new GetBalanceParams { ClientKey = AnticaptchaKey };
 

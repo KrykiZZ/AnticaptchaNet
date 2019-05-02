@@ -11,6 +11,7 @@ namespace AnticaptchaNet.Tests
     {
         private Anticaptcha Api { get; set; }
 
+        [TestInitialize]
         public void Initialize()
         {
             this.Api = new Anticaptcha(File.ReadAllText("anticaptcha_key.txt"));
@@ -19,8 +20,6 @@ namespace AnticaptchaNet.Tests
         [TestMethod]
         public void ImageToTextTest()
         {
-            this.Initialize();
-
             string actualCaptchaSolution = "sqc48";
             int taskId = this.Api.CreateTask( new Uri("https://pp.userapi.com/c855136/v855136500/33437/82tgZE48vDE.jpg") );
 
@@ -28,7 +27,7 @@ namespace AnticaptchaNet.Tests
 
             while (!taskResult.IsDone)
             {
-                Thread.Sleep(1000); // Wait for captcha solution.
+                Thread.Sleep(500); // Wait for captcha solution.
                 taskResult = this.Api.GetTaskResult(taskId);
             }
 
