@@ -13,12 +13,7 @@ namespace AnticaptchaNet
         /// <summary>
         /// User's Anticaptcha API key from settings.
         /// </summary>
-        protected string AnticaptchaKey { get; private set; }
-
-        /// <summary>
-        /// Get user's current balance.
-        /// </summary>
-        public float Balance { get => GetBalance(); }
+        protected string AnticaptchaKey { get; set; }
 
         /// <summary>
         /// Create an instance of Anticaptcha API wrapper.
@@ -26,11 +21,11 @@ namespace AnticaptchaNet
         /// <param name="anticaptchaKey">User's anticaptcha API key from settings.</param>
         public Anticaptcha(string anticaptchaKey)
         {
-            AnticaptchaKey = anticaptchaKey;
+            this.AnticaptchaKey = anticaptchaKey;
         }
 
         /// <summary>
-        /// Get anticaptcha balance.
+        /// Get anticaptcha account balance.
         /// </summary>
         /// <returns>Returns anticaptcha balance.</returns>
         protected float GetBalance()
@@ -40,8 +35,7 @@ namespace AnticaptchaNet
             var reqJson = JsonConvert.SerializeObject(req);
             var response = (BalanceResult) SimpleRequest.Execute<BalanceResult>(ApiMethodUrl.GetBalance, reqJson, "POST");
 
-            if (response.ErrorId != 0)
-                throw new AnticaptchaError(response.ErrorId, response.ErrorCode, response.ErrorDescription);
+            response.ThrowExceptionIfError();
             
             return response.Balance;
         }
@@ -62,8 +56,7 @@ namespace AnticaptchaNet
             var reqJson = JsonConvert.SerializeObject(req);
             var response = (CreateTaskResult)SimpleRequest.Execute<CreateTaskResult>(ApiMethodUrl.CreateTask, reqJson, "POST");
 
-            if (response.ErrorId != 0)
-                throw new AnticaptchaError(response.ErrorId, response.ErrorCode, response.ErrorDescription);
+            response.ThrowExceptionIfError();
 
             return response.TaskId;
         }
@@ -73,14 +66,14 @@ namespace AnticaptchaNet
         /// </summary>
         /// <param name="filePath">Image file path.</param>
         /// <returns>Id of the created task.</returns>
-        public int CreateTask(string filePath) => CreateTask(new CaptchaTask.ImageToTextTask(filePath));
+        public int CreateTask(string filePath) => this.CreateTask(new CaptchaTask.ImageToTextTask(filePath));
 
         /// <summary>
         /// Submit task by URI of the captcha image.
         /// </summary>
         /// <param name="uri">URI of the captcha image.</param>
         /// <returns>Id of the created task.</returns>
-        public int CreateTask(Uri uri) => CreateTask(new CaptchaTask.ImageToTextTask(uri));
+        public int CreateTask(Uri uri) => this.CreateTask(new CaptchaTask.ImageToTextTask(uri));
 
         /// <summary>
         /// Get task result by its id.
@@ -99,8 +92,7 @@ namespace AnticaptchaNet
             var respJson = SimpleRequest.Execute(ApiMethodUrl.GetTaskResult, reqJson, "POST");
             var taskResult = TaskResult.FromJson(respJson);
 
-            if (taskResult.ErrorId != 0)
-                throw new AnticaptchaError(taskResult.ErrorId, taskResult.ErrorCode, taskResult.ErrorDescription);
+            taskResult.ThrowExceptionIfError();
 
             return taskResult;
         }

@@ -7,7 +7,7 @@ namespace AnticaptchaNet.ApiResponse
 {
     public class TaskResult : AnticaptchaResponse
     {
-        public bool IsDone => (Status == "ready");
+        public bool IsDone => (this.Status == "ready");
 
         /// <summary>
         /// Use IsDone property to check whether your task has solution.
@@ -73,8 +73,8 @@ namespace AnticaptchaNet.ApiResponse
                 case nameof(ImageToTextSolution):
                     taskResult.Solution = new ImageToTextSolution
                     (
-                        Text: (string)solution["text"],
-                        Url: (string)solution["url"]
+                        text: (string)solution["text"],
+                        url: (string)solution["url"]
                     );
 
                     break;

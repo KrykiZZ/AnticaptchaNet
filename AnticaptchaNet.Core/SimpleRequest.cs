@@ -4,7 +4,7 @@ using System.Net;
 
 namespace AnticaptchaNet
 {
-    static class SimpleRequest
+    internal static class SimpleRequest
     {
         public static string Execute(string url, string json, string method = "POST")
         {
@@ -26,7 +26,7 @@ namespace AnticaptchaNet
 
         public static object Execute<TT>(string url, string json, string method = "POST")
         {
-            var result = Execute(url, json, method);
+            var result = SimpleRequest.Execute(url, json, method);
 
             return JsonConvert.DeserializeObject<TT>(result);
         }

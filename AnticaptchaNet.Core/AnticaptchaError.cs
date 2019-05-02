@@ -11,9 +11,9 @@ namespace AnticaptchaNet
 
         public AnticaptchaError(int errorId, string errorCode, string errorDescription)
         {
-            Id = errorId;
-            Code = errorCode;
-            Description = errorDescription;
+            this.Id = errorId;
+            this.Code = errorCode;
+            this.Description = errorDescription;
         }
     }
 }

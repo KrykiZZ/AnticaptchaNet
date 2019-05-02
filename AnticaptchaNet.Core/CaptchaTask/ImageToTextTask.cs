@@ -28,7 +28,7 @@ namespace AnticaptchaNet.CaptchaTask
         /// <param name="filePath">Image file path.</param>
         public ImageToTextTask(string filePath)
         {
-            ImageBase64 = Convert.ToBase64String(File.ReadAllBytes(filePath));
+            this.ImageBase64 = Convert.ToBase64String(File.ReadAllBytes(filePath));
         }
 
         /// <summary>
@@ -38,19 +38,8 @@ namespace AnticaptchaNet.CaptchaTask
         /// <param name="imageUri">Image URI.</param>
         public ImageToTextTask(Uri imageUri)
         {
-            WebClient wc = new WebClient();
-            byte[] bytes;
-
-            try
-            {
-                bytes = wc.DownloadData(imageUri);
-            }
-            finally
-            {
-                if (wc != null) wc.Dispose();
-            }
-
-            ImageBase64 = Convert.ToBase64String(bytes);
+            using (var wc = new WebClient())
+                this.ImageBase64 = Convert.ToBase64String(wc.DownloadData(imageUri));
         }
 
         #region Optional Fields

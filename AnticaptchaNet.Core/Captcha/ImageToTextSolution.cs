@@ -9,10 +9,10 @@
         
         public string Url { get; protected set; }
 
-        public ImageToTextSolution(string Text, string Url)
+        public ImageToTextSolution(string text, string url)
         {
-            this.Text = Text;
-            this.Url = Url;
+            this.Text = text;
+            this.Url = url;
         }
     }
 }

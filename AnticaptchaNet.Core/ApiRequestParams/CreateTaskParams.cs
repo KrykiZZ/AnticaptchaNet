@@ -11,8 +11,12 @@ namespace AnticaptchaNet.ApiRequestParams
         [JsonProperty(PropertyName = "softId")]
         public int SoftId { get; set; }          // appcenter id
 
+        /// <summary>
+        /// Workers pool language.
+        /// "ru" / "en"
+        /// </summary>
         [JsonProperty(PropertyName = "languagePool")]
-        public string LanguagePool { get; set; } // workers pool lang (en/rn)
+        public string LanguagePool { get; set; }
 
         [JsonProperty(PropertyName = "callbackUrl")]
         public string CallbackUrl { get; set; }

@@ -22,5 +22,12 @@ namespace AnticaptchaNet.ApiResponse
         /// </summary>
         [JsonProperty(PropertyName = "errorDescription")]
         public string ErrorDescription { get; protected set; }
+
+
+        public void ThrowExceptionIfError()
+        {
+            if (this.ErrorId != 0)
+                throw new AnticaptchaError(this.ErrorId, this.ErrorCode, this.ErrorDescription);
+        }
     }
 }

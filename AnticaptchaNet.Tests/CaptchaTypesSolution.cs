@@ -7,29 +7,29 @@ using System.Threading;
 namespace AnticaptchaNet.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class CaptchaTypesSolution
     {
-        Anticaptcha anticaptcha;
+        private Anticaptcha Api { get; set; }
 
         public void Initialize()
         {
-            anticaptcha = new Anticaptcha(File.ReadAllText("anticaptcha_key.txt"));
+            this.Api = new Anticaptcha(File.ReadAllText("anticaptcha_key.txt"));
         }
 
         [TestMethod]
         public void ImageToTextTest()
         {
-            Initialize();
+            this.Initialize();
 
             string actualCaptchaSolution = "sqc48";
-            int taskId = anticaptcha.CreateTask($"captcha_{actualCaptchaSolution}.jpg");
+            int taskId = this.Api.CreateTask( new Uri("https://pp.userapi.com/c855136/v855136500/33437/82tgZE48vDE.jpg") );
 
-            TaskResult taskResult = anticaptcha.GetTaskResult(taskId);
+            TaskResult taskResult = this.Api.GetTaskResult(taskId);
 
             while (!taskResult.IsDone)
             {
                 Thread.Sleep(1000); // Wait for captcha solution.
-                taskResult = anticaptcha.GetTaskResult(taskId);
+                taskResult = this.Api.GetTaskResult(taskId);
             }
 
             string captchaSolution = ((Captcha.ImageToTextSolution)taskResult.Solution).Text;
