@@ -9,13 +9,17 @@ PM> Install-Package AnticaptchaNet
 
 #### And simply:
 ```cs
-Anticaptcha anticaptcha = new Anticaptcha("YOUR_ANTICAPTCHA_KEY");
+using AnticaptchaNet;
+using AnticaptchaNet.Captcha;
 
-if (anticaptcha.Balance < 0.1) return;
+...
+
+var anticaptcha = new Anticaptcha("YOUR_ANTICAPTCHA_KEY");
+
+if (anticaptcha.GetBalance() < 0.1) return;
 
 int taskId = anticaptcha.CreateTask("captcha_filepath.jpg");
-
-TaskResult taskResult = anticaptcha.GetTaskResult(taskId);
+var taskResult = anticaptcha.GetTaskResult(taskId);
 
 while (!taskResult.IsDone)
 {
@@ -23,12 +27,12 @@ while (!taskResult.IsDone)
     taskResult = anticaptcha.GetTaskResult(taskId);
 }
 
-string captchaSolution = ((Captcha.ImageToTextSolution)taskResult.Solution).Text;
+string captchaSolution = ((ImageToTextSolution) taskResult.Solution).Text;
 ```
 
 ## Dependencies
 - [Newtonsoft.Json](https://www.newtonsoft.com/)
- 
+
 
 # Contribution
 **Feel free to help us with something from this list!**
@@ -55,7 +59,7 @@ https://github.com/Shifu462/AnticaptchaNet/blob/f008fcb58b96bcd01b4f981243ac58bd
 https://github.com/Shifu462/AnticaptchaNet/blob/master/AnticaptchaNet.Core/Captcha/ImageToTextSolution.cs
 4. Create test!
 https://github.com/Shifu462/AnticaptchaNet/blob/f008fcb58b96bcd01b4f981243ac58bdd9284812/AnticaptchaNet.Tests/CaptchaTypesSolution.cs#L21
-     
+
 #### 2. Summary for every field and method in the library.
 #### 3. Documentation.
 #### 4. More examples.
