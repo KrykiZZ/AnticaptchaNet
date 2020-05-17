@@ -51,14 +51,10 @@ string captchaSolution = ((ImageToTextSolution) taskResult.Solution).Text;
 https://github.com/Shifu462/AnticaptchaNet/milestone/1
 
 Example.
-1. Create task result.
-https://github.com/Shifu462/AnticaptchaNet/blob/master/AnticaptchaNet.Core/CaptchaTask/ImageToTextTask.cs
-2. Put that into switch inside of FromJson method.
-https://github.com/Shifu462/AnticaptchaNet/blob/f008fcb58b96bcd01b4f981243ac58bdd9284812/AnticaptchaNet.Core/ApiResponse/TaskResult.cs#L71-L78
-3. Create solution.
-https://github.com/Shifu462/AnticaptchaNet/blob/master/AnticaptchaNet.Core/Captcha/ImageToTextSolution.cs
-4. Create test!
-https://github.com/Shifu462/AnticaptchaNet/blob/f008fcb58b96bcd01b4f981243ac58bdd9284812/AnticaptchaNet.Tests/CaptchaTypesSolution.cs#L21
+1. [Create a task result wrapper](https://github.com/Shifu462/AnticaptchaNet/blob/master/AnticaptchaNet.Core/CaptchaTask/ImageToTextTask.cs).
+2. [Put that into `switch` statement inside of the FromJson method](https://github.com/Shifu462/AnticaptchaNet/blob/f008fcb58b96bcd01b4f981243ac58bdd9284812/AnticaptchaNet.Core/ApiResponse/TaskResult.cs#L71-L78).
+3. [Create a solution wrapper](https://github.com/Shifu462/AnticaptchaNet/blob/master/AnticaptchaNet.Core/Captcha/ImageToTextSolution.cs).
+4. [Create a test](https://github.com/Shifu462/AnticaptchaNet/blob/f008fcb58b96bcd01b4f981243ac58bdd9284812/AnticaptchaNet.Tests/CaptchaTypesSolution.cs#L21)!
 
 #### 2. Summary for every field and method in the library.
 #### 3. Documentation.
